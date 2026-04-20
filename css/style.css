@@ -382,6 +382,16 @@ ul { list-style: none; }
   align-items: center;
 }
 
+.story__day-marker {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-style: italic;
+  color: var(--crimson-bright);
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 32px !important;
+}
+
 .story__text p {
   color: var(--white-muted);
   margin-bottom: 18px;
