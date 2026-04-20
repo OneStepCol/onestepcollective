@@ -1,0 +1,130 @@
+/* =============================================
+   OUR STORY PAGE — ourstory.css
+   ============================================= */
+
+/* Always-on nav active state */
+.nav__link--active {
+  color: var(--white) !important;
+}
+.nav__link--active::after {
+  width: 100% !important;
+}
+
+/* --- Page Hero --- */
+.page-hero {
+  position: relative;
+  padding: 180px 0 100px;
+  overflow: hidden;
+}
+
+.page-hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(139, 26, 26, 0.15) 0%, transparent 70%),
+    var(--black);
+  z-index: 0;
+}
+
+.page-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--white);
+  margin-top: 16px;
+}
+
+.page-hero__title em {
+  font-style: italic;
+  color: var(--rose-light);
+  display: block;
+}
+
+/* --- Prose Page --- */
+.prose-page {
+  background: var(--black-soft);
+  padding: 80px 0 120px;
+  border-top: 1px solid var(--black-border);
+}
+
+.prose {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.prose__lead {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--black-border);
+}
+
+.prose p {
+  color: var(--white-muted);
+  font-size: 1.05rem;
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+
+.prose p strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.prose__divider {
+  text-align: center;
+  font-size: 1.4rem;
+  margin: 48px 0;
+  opacity: 0.5;
+}
+
+.prose__blockquote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-style: italic;
+  color: var(--rose-light);
+  line-height: 1.65;
+  border-left: 3px solid var(--crimson);
+  padding: 24px 32px;
+  margin: 40px 0;
+  background: rgba(139, 26, 26, 0.06);
+}
+
+.prose__belong {
+  font-size: 1.1rem !important;
+  color: var(--white) !important;
+  text-align: center;
+  padding: 40px 0 8px;
+}
+
+.prose__sign {
+  font-family: var(--font-serif);
+  font-size: 1.1rem !important;
+  color: var(--white-muted) !important;
+  text-align: center;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--black-border);
+}
+
+.prose__sign em {
+  font-style: italic;
+  color: var(--rose);
+}
+
+.prose__cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding-top: 48px;
+  flex-wrap: wrap;
+}
