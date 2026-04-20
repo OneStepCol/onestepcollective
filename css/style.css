@@ -360,7 +360,7 @@ ul { list-style: none; }
    STORY
    ============================================= */
 .story {
-  padding: 160px 0;
+  padding: 80px 0;
   background: var(--black-soft);
   position: relative;
 }
@@ -384,10 +384,10 @@ ul { list-style: none; }
 
 .story__day-marker {
   font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: 48px;
   font-style: italic;
   font-weight: 700;
-  color: var(--crimson-bright);
+  color: #c0392b;
   text-align: center;
   line-height: 1.2;
   margin-bottom: 0 !important;
