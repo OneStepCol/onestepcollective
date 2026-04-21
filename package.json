@@ -1,0 +1,12 @@
+{
+  "name": "onestepcollective",
+  "version": "1.0.0",
+  "description": "One Step Collective — recovery community and memoir brand",
+  "private": true,
+  "dependencies": {
+    "stripe": "^14.21.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

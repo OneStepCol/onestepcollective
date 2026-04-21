@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merch — One Step Collective</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/merch.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">One Step Collective</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="index.html" class="nav__link">Home</a></li>
+      <li><a href="ourstory.html" class="nav__link">Our Story</a></li>
+      <li><a href="merch.html" class="nav__link nav__link--active">Merch</a></li>
+      <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+    </ul>
+    <button class="cart-trigger" id="cartTrigger" aria-label="Open cart">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="merch-header">
+    <div class="container">
+      <span class="section-label">Merch</span>
+      <h1 class="merch-header__title">Wear the reminder.</h1>
+      <p class="merch-header__sub">Every piece is a statement. Every purchase supports the community.</p>
+    </div>
+  </header>
+
+  <!-- PRODUCTS -->
+  <main class="merch-main">
+    <div class="container">
+      <div class="products-grid">
+
+        <!-- MUG -->
+        <article class="product-card" data-product="mug">
+          <div class="product-card__img">
+            <img src="images/mug.png" alt="A Rose a Day Mug" />
+          </div>
+          <div class="product-card__body">
+            <h2 class="product-card__name">A Rose a Day Mug</h2>
+            <p class="product-card__desc">Start every morning with a reminder. 11oz ceramic, dishwasher safe, rose graphic with the tagline on the back.</p>
+            <p class="product-card__price" id="mugPrice">$18.00</p>
+            <button class="btn btn--primary btn--full add-to-cart"
+              data-product-id="mug"
+              data-name="A Rose a Day Mug"
+              data-price="1800"
+              data-display-price="$18.00">
+              Add to Cart
+            </button>
+          </div>
+        </article>
+
+        <!-- TEE -->
+        <article class="product-card" data-product="tshirt">
+          <div class="product-card__img">
+            <img src="images/tshirt.png" alt="A Rose a Day Tee" />
+          </div>
+          <div class="product-card__body">
+            <h2 class="product-card__name">A Rose a Day Tee</h2>
+            <p class="product-card__desc">Heavyweight black tee. Front rose graphic, back tagline. Printed and shipped via Printful.</p>
+
+            <div class="size-selector" id="teeSizeSelector">
+              <label class="size-selector__label">Size</label>
+              <div class="size-selector__grid">
+                <button class="size-btn" data-size="XS" data-upcharge="0">XS</button>
+                <button class="size-btn" data-size="S"  data-upcharge="0">S</button>
+                <button class="size-btn size-btn--selected" data-size="M"  data-upcharge="0">M</button>
+                <button class="size-btn" data-size="L"  data-upcharge="0">L</button>
+                <button class="size-btn" data-size="XL" data-upcharge="0">XL</button>
+                <button class="size-btn" data-size="2XL" data-upcharge="200">2XL</button>
+                <button class="size-btn" data-size="3XL" data-upcharge="400">3XL</button>
+                <button class="size-btn" data-size="4XL" data-upcharge="600">4XL</button>
+                <button class="size-btn" data-size="5XL" data-upcharge="800">5XL</button>
+              </div>
+              <p class="size-note">XS–XL: $32 &nbsp;·&nbsp; 2XL: $34 &nbsp;·&nbsp; 3XL: $36 &nbsp;·&nbsp; 4XL: $38 &nbsp;·&nbsp; 5XL: $40</p>
+            </div>
+
+            <p class="product-card__price" id="teePrice">$32.00</p>
+            <button class="btn btn--primary btn--full add-to-cart"
+              id="teeAddToCart"
+              data-product-id="tshirt"
+              data-name="A Rose a Day Tee"
+              data-price="3200"
+              data-display-price="$32.00"
+              data-size="M">
+              Add to Cart
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- CART DRAWER -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-drawer__header">
+      <h2>Your Cart</h2>
+      <button class="cart-drawer__close" id="cartClose" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-drawer__items" id="cartItems">
+      <p class="cart-empty" id="cartEmpty">Your cart is empty.</p>
+    </div>
+    <div class="cart-drawer__footer" id="cartFooter" style="display:none;">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <p class="cart-shipping-note">Shipping calculated at checkout.</p>
+      <button class="btn btn--primary btn--full" id="checkoutBtn">
+        Checkout
+      </button>
+      <p class="cart-error" id="cartError"></p>
+    </div>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <p class="footer__logo">One Step Collective</p>
+          <p class="footer__tagline">One Step. One Punch. One Round. 🌹</p>
+        </div>
+        <nav class="footer__nav">
+          <a href="index.html">Home</a>
+          <a href="ourstory.html">Our Story</a>
+          <a href="merch.html">Merch</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <div class="footer__social">
+          <a href="https://twitter.com/OneStepCol" target="_blank" rel="noopener noreferrer">@OneStepCol</a>
+        </div>
+      </div>
+      <p class="footer__copy">&copy; 2026 One Step Collective. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ---- NAV ----
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    navLinks.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- STRIPE ----
+    const STRIPE_PK = 'pk_test_51RCLSGQPtsbMAZnzw6pUiKPxAjkamwR8k73uvj5OyuSDWDXUkxAOIOtgP6mRZJou1ODpQ9yZzct3h1UAxaXujhZC00fvZzoBWf';
+
+    // ---- CART STATE ----
+    let cart = [];
+
+    function formatPrice(cents) {
+      return '$' + (cents / 100).toFixed(2);
+    }
+
+    // ---- SIZE SELECTOR ----
+    const teeSizeSelector = document.getElementById('teeSizeSelector');
+    const teeAddToCart    = document.getElementById('teeAddToCart');
+    const teePrice        = document.getElementById('teePrice');
+
+    teeSizeSelector.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        teeSizeSelector.querySelectorAll('.size-btn').forEach(b => b.classList.remove('size-btn--selected'));
+        btn.classList.add('size-btn--selected');
+        const upcharge = parseInt(btn.dataset.upcharge, 10);
+        const price = 3200 + upcharge;
+        teeAddToCart.dataset.size = btn.dataset.size;
+        teeAddToCart.dataset.price = price;
+        teeAddToCart.dataset.displayPrice = formatPrice(price);
+        teePrice.textContent = formatPrice(price);
+      });
+    });
+
+    // ---- ADD TO CART ----
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = {
+          productId:    btn.dataset.productId,
+          name:         btn.dataset.name,
+          price:        parseInt(btn.dataset.price, 10),
+          displayPrice: btn.dataset.displayPrice,
+          size:         btn.dataset.size || null,
+          quantity:     1,
+        };
+
+        // merge with existing cart entry if same product+size
+        const existing = cart.find(c =>
+          c.productId === item.productId && c.size === item.size
+        );
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push(item);
+        }
+
+        renderCart();
+        openCart();
+      });
+    });
+
+    // ---- CART RENDER ----
+    function renderCart() {
+      const cartItems   = document.getElementById('cartItems');
+      const cartEmpty   = document.getElementById('cartEmpty');
+      const cartFooter  = document.getElementById('cartFooter');
+      const cartSubtotal = document.getElementById('cartSubtotal');
+      const cartCount   = document.getElementById('cartCount');
+
+      const totalQty = cart.reduce((sum, i) => sum + i.quantity, 0);
+      cartCount.textContent = totalQty;
+      cartCount.style.display = totalQty > 0 ? 'flex' : 'none';
+
+      if (cart.length === 0) {
+        cartEmpty.style.display = 'block';
+        cartFooter.style.display = 'none';
+        cartItems.querySelectorAll('.cart-item').forEach(el => el.remove());
+        return;
+      }
+
+      cartEmpty.style.display = 'none';
+      cartFooter.style.display = 'block';
+
+      // Re-render items
+      cartItems.querySelectorAll('.cart-item').forEach(el => el.remove());
+      cart.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <div class="cart-item__info">
+            <p class="cart-item__name">${item.name}${item.size ? ' <span class="cart-item__size">— ' + item.size + '</span>' : ''}</p>
+            <p class="cart-item__price">${formatPrice(item.price)} each</p>
+          </div>
+          <div class="cart-item__controls">
+            <button class="qty-btn" data-idx="${idx}" data-delta="-1">−</button>
+            <span class="qty-value">${item.quantity}</span>
+            <button class="qty-btn" data-idx="${idx}" data-delta="1">+</button>
+            <button class="remove-btn" data-idx="${idx}" aria-label="Remove">×</button>
+          </div>
+        `;
+        cartItems.appendChild(div);
+      });
+
+      // Qty controls
+      cartItems.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx   = parseInt(btn.dataset.idx, 10);
+          const delta = parseInt(btn.dataset.delta, 10);
+          cart[idx].quantity += delta;
+          if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+          renderCart();
+        });
+      });
+
+      cartItems.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          cart.splice(parseInt(btn.dataset.idx, 10), 1);
+          renderCart();
+        });
+      });
+
+      const subtotal = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+      cartSubtotal.textContent = formatPrice(subtotal);
+    }
+
+    // ---- CART OPEN/CLOSE ----
+    function openCart() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('cartOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+      document.getElementById('cartDrawer').classList.remove('open');
+      document.getElementById('cartOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('cartTrigger').addEventListener('click', openCart);
+    document.getElementById('cartClose').addEventListener('click', closeCart);
+    document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+    // ---- CHECKOUT ----
+    document.getElementById('checkoutBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('checkoutBtn');
+      const errEl = document.getElementById('cartError');
+      errEl.textContent = '';
+      btn.disabled = true;
+      btn.textContent = 'Redirecting…';
+
+      try {
+        const payload = cart.map(item => ({
+          productId: item.productId,
+          size:      item.size,
+          quantity:  item.quantity,
+        }));
+
+        const res = await fetch('/api/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: payload }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || !data.url) {
+          throw new Error(data.error || 'Could not create checkout session.');
+        }
+
+        window.location.href = data.url;
+      } catch (err) {
+        errEl.textContent = err.message;
+        btn.disabled = false;
+        btn.textContent = 'Checkout';
+      }
+    });
+
+    // Init cart count
+    renderCart();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed — One Step Collective</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    .success-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--black);
+      padding: 40px 24px;
+    }
+
+    .success-card {
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .success-rose {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 32px;
+      animation: roseFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes roseFloat {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .success-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .success-title em {
+      font-style: italic;
+      color: var(--rose-light);
+      display: block;
+    }
+
+    .success-body {
+      color: var(--white-muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .success-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--rose);
+      font-size: 1rem;
+      margin-bottom: 48px;
+    }
+
+    .success-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav__logo">One Step Collective</a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="index.html" class="nav__link">Home</a></li>
+      <li><a href="ourstory.html" class="nav__link">Our Story</a></li>
+      <li><a href="merch.html" class="nav__link">Merch</a></li>
+      <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="success-page">
+    <div class="success-card">
+      <span class="success-rose">🌹</span>
+      <h1 class="success-title">
+        Order confirmed.
+        <em>You showed up.</em>
+      </h1>
+      <p class="success-body">
+        Thank you for your order — it means more than you know. We're getting it ready and will send a confirmation to your email shortly.
+      </p>
+      <p class="success-body">
+        Your order will be fulfilled and shipped via Printful. Standard shipping typically arrives in 5–10 business days.
+      </p>
+      <p class="success-tagline">One Step. One Punch. One Round. 🌹</p>
+      <div class="success-actions">
+        <a href="merch.html" class="btn btn--ghost">Back to Merch</a>
+        <a href="index.html" class="btn btn--primary">Go Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
