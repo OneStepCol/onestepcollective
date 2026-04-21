@@ -1,3 +1,4 @@
+// Stripe Checkout session handler — One Step Collective
 const Stripe = require('stripe');
 
 const PRODUCTS = {
