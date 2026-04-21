@@ -23,7 +23,10 @@ const TSHIRT_UPCHARGE = {
 };
 
 module.exports = async (req, res) => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  const key = process.env.STRIPE_SECRET_KEY;
+  console.log('STRIPE_SECRET_KEY prefix:', key ? key.slice(0, 8) : 'UNDEFINED');
+
+  const stripe = new Stripe(key);
 
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
