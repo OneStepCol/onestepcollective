@@ -58,9 +58,9 @@ const handler = async (req, res) => {
   const session = event.data.object;
 
   try {
-    // Retrieve full session with shipping details
+    // Retrieve full session — shipping_details is returned directly, only line_items needs expanding
     const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
-      expand: ['line_items', 'shipping_details'],
+      expand: ['line_items'],
     });
 
     const shipping = fullSession.shipping_details;
