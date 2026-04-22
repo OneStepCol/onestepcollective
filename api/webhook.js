@@ -1,5 +1,9 @@
 const Stripe = require('stripe');
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+// Disable Vercel's body parser — Stripe needs the raw body to verify signatures
+module.exports.config = {
+  api: { bodyParser: false },
+};
 
 // Printful sync variant IDs — fetched via scripts/get-printful-ids.js
 const PRINTFUL_VARIANTS = {
@@ -19,15 +23,27 @@ const PRINTFUL_VARIANTS = {
   },
 };
 
+// Collect raw body from the request stream
+function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on('data', chunk => chunks.push(chunk));
+    req.on('end', () => resolve(Buffer.concat(chunks)));
+    req.on('error', reject);
+  });
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).end('Method not allowed');
 
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   const sig = req.headers['stripe-signature'];
   let event;
 
   try {
+    const rawBody = await getRawBody(req);
     event = stripe.webhooks.constructEvent(
-      req.body, // raw body — Vercel must forward raw body (see vercel.json)
+      rawBody,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
@@ -43,7 +59,7 @@ module.exports = async (req, res) => {
   const session = event.data.object;
 
   try {
-    // Retrieve full session with line items and shipping
+    // Retrieve full session with shipping details
     const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
       expand: ['line_items', 'shipping_details'],
     });
@@ -76,18 +92,15 @@ module.exports = async (req, res) => {
       items: printfulItems,
     };
 
-    const printfulRes = await fetch(
-      `https://api.printful.com/orders?confirm=true`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.PRINTFUL_API_KEY}`,
-          'X-PF-Store-Id': process.env.PRINTFUL_STORE_ID,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(printfulOrder),
-      }
-    );
+    const printfulRes = await fetch('https://api.printful.com/orders?confirm=true', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.PRINTFUL_API_KEY}`,
+        'X-PF-Store-Id': process.env.PRINTFUL_STORE_ID,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(printfulOrder),
+    });
 
     const printfulData = await printfulRes.json();
 

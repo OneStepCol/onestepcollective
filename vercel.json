@@ -1,4 +1,5 @@
 {
+  "trailingSlash": false,
   "functions": {
     "api/create-checkout.js": {
       "memory": 512,
@@ -8,18 +9,5 @@
       "memory": 512,
       "maxDuration": 10
     }
-  },
-  "routes": [
-    {
-      "src": "/api/webhook",
-      "dest": "/api/webhook.js",
-      "headers": {
-        "x-vercel-body-parser-bypass": "true"
-      }
-    },
-    {
-      "src": "/api/create-checkout",
-      "dest": "/api/create-checkout.js"
-    }
-  ]
+  }
 }
