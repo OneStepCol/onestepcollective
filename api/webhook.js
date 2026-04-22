@@ -1,10 +1,5 @@
 const Stripe = require('stripe');
 
-// Disable Vercel's body parser — Stripe needs the raw body to verify signatures
-module.exports.config = {
-  api: { bodyParser: false },
-};
-
 // Printful sync variant IDs — fetched via scripts/get-printful-ids.js
 const PRINTFUL_VARIANTS = {
   mug: {
@@ -33,7 +28,9 @@ function getRawBody(req) {
   });
 }
 
-module.exports = async (req, res) => {
+const handler = async (req, res) => {
+  console.log('Webhook received:', req.method);
+
   if (req.method !== 'POST') return res.status(405).end('Method not allowed');
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -42,11 +39,13 @@ module.exports = async (req, res) => {
 
   try {
     const rawBody = await getRawBody(req);
+    console.log('Raw body length:', rawBody.length);
     event = stripe.webhooks.constructEvent(
       rawBody,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
+    console.log('Event type:', event.type);
   } catch (err) {
     console.error('Webhook signature error:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
@@ -92,6 +91,8 @@ module.exports = async (req, res) => {
       items: printfulItems,
     };
 
+    console.log('Creating Printful order for session:', session.id);
+
     const printfulRes = await fetch('https://api.printful.com/orders?confirm=true', {
       method: 'POST',
       headers: {
@@ -117,3 +118,11 @@ module.exports = async (req, res) => {
     return res.status(500).json({ error: err.message });
   }
 };
+
+// Config must be set on the handler reference AFTER it's defined,
+// otherwise module.exports = handler would overwrite it.
+handler.config = {
+  api: { bodyParser: false },
+};
+
+module.exports = handler;
