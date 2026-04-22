@@ -1,21 +1,20 @@
 const Stripe = require('stripe');
 
-// Printful real variant_ids — fetched via scripts/get-printful-ids.js
-// These are catalog variant_ids, NOT sync_variant_ids
+// Printful sync_variant_ids — store variants with print files already attached
 const PRINTFUL_VARIANTS = {
   mug: {
-    default: 9323,
+    default: 5276084914,
   },
   tshirt: {
-    XS:    9527,
-    S:     4016,
-    M:     4017,
-    L:     4018,
-    XL:    4019,
-    '2XL': 4020,
-    '3XL': 5295,
-    '4XL': 5310,
-    '5XL': 12871,
+    XS:    5276087179,
+    S:     5276087180,
+    M:     5276087181,
+    L:     5276087182,
+    XL:    5276087183,
+    '2XL': 5276087184,
+    '3XL': 5276087185,
+    '4XL': 5276087186,
+    '5XL': 5276087187,
   },
 };
 
@@ -72,9 +71,9 @@ const handler = async (req, res) => {
 
     const printfulItems = items.map(item => {
       const variantMap = PRINTFUL_VARIANTS[item.productId];
-      const variantId = item.size ? variantMap[item.size] : variantMap.default;
+      const syncVariantId = item.size ? variantMap[item.size] : variantMap.default;
       return {
-        variant_id: variantId,
+        sync_variant_id: syncVariantId,
         quantity: item.quantity || 1,
       };
     });
