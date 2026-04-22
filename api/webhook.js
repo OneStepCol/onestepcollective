@@ -63,8 +63,8 @@ const handler = async (req, res) => {
       expand: ['line_items'],
     });
 
-    const shipping = fullSession.shipping_details;
-    const addr = shipping.address;
+    const shipping = fullSession.collected_information?.shipping_details;
+    const addr = shipping?.address;
 
     // Parse items stored in session metadata
     const items = JSON.parse(session.metadata.items || '[]');
