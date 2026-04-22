@@ -1,22 +1,21 @@
 const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Printful variant IDs — update with your actual Printful product/variant IDs
-// after running: GET https://api.printful.com/store/products (with your store ID)
+// Printful sync variant IDs — fetched via scripts/get-printful-ids.js
 const PRINTFUL_VARIANTS = {
   mug: {
-    default: 19239, // placeholder — replace with real Printful variant ID
+    default: 5276084914,
   },
   tshirt: {
-    XS:  '4011',
-    S:   '4012',
-    M:   '4013',
-    L:   '4014',
-    XL:  '4015',
-    '2XL': '4016',
-    '3XL': '4017',
-    '4XL': '4018',
-    '5XL': '4019',
+    XS:    5276087179,
+    S:     5276087180,
+    M:     5276087181,
+    L:     5276087182,
+    XL:    5276087183,
+    '2XL': 5276087184,
+    '3XL': 5276087185,
+    '4XL': 5276087186,
+    '5XL': 5276087187,
   },
 };
 
