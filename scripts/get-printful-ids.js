@@ -1,11 +1,10 @@
 // scripts/get-printful-ids.js
-// Fetches all store products and prints product + variant IDs
+// Fetches all store products and prints both sync variant IDs and real variant IDs
 
 const API_KEY  = process.env.PRINTFUL_API_KEY  || 'TEbAvg5e7HcqeDTzRbxvq2odWGx6BWqFTTVHIMbX';
 const STORE_ID = process.env.PRINTFUL_STORE_ID || '18056120';
 
 async function run() {
-  // 1. Get all store products
   const listRes = await fetch('https://api.printful.com/store/products', {
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
@@ -22,9 +21,8 @@ async function run() {
 
   const products = listData.result;
   console.log(`\nFound ${products.length} product(s) in store ${STORE_ID}\n`);
-  console.log('='.repeat(60));
+  console.log('='.repeat(70));
 
-  // 2. For each product, fetch full details including variants
   for (const p of products) {
     const detailRes = await fetch(`https://api.printful.com/store/products/${p.id}`, {
       headers: {
@@ -44,14 +42,20 @@ async function run() {
     const variants = detailData.result.sync_variants;
 
     console.log(`\nPRODUCT: ${product.name}`);
-    console.log(`  Store Product ID : ${product.id}`);
+    console.log(`  Store Product ID (sync_product_id) : ${product.id}`);
     console.log(`  Variants (${variants.length}):`);
+    console.log(`  ${'Name'.padEnd(30)} ${'sync_variant_id'.padEnd(18)} ${'variant_id (USE THIS)'.padEnd(22)} SKU`);
+    console.log(`  ${'-'.repeat(85)}`);
 
     for (const v of variants) {
-      console.log(`    - Variant ID: ${v.id}  |  Name: ${v.name}  |  SKU: ${v.sku || 'n/a'}  |  Retail: $${(v.retail_price || '?')}`);
+      const name    = v.name.padEnd(30);
+      const syncId  = String(v.id).padEnd(18);
+      const realId  = String(v.variant_id).padEnd(22);
+      const sku     = v.sku || 'n/a';
+      console.log(`  ${name} ${syncId} ${realId} ${sku}`);
     }
 
-    console.log('-'.repeat(60));
+    console.log('-'.repeat(70));
   }
 }
 
