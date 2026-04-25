@@ -444,6 +444,73 @@ ul { list-style: none; }
 }
 
 /* =============================================
+   MEET JUSTIN
+   ============================================= */
+.meet {
+  padding: 100px 0;
+  background: var(--black);
+  position: relative;
+}
+
+.meet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--black-border), transparent);
+}
+
+.meet__inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.meet__photo-wrap {
+  flex-shrink: 0;
+}
+
+.meet__photo {
+  width: 280px;
+  height: 280px;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border: 1px solid var(--black-border);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 4px rgba(139, 26, 26, 0.15);
+}
+
+.meet__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.meet__text p {
+  color: var(--white-muted);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+.meet__closing {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--rose-light) !important;
+  font-size: 1.1rem !important;
+  margin-top: 8px;
+}
+
+/* =============================================
    BOOK
    ============================================= */
 .book {
@@ -910,6 +977,7 @@ ul { list-style: none; }
 @media (max-width: 900px) {
   .story__inner,
   .book__inner,
+  .meet__inner,
   .contact__inner {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -918,6 +986,16 @@ ul { list-style: none; }
   .book__cover-wrap {
     display: flex;
     justify-content: center;
+  }
+
+  .meet__photo-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .meet__photo {
+    width: 220px;
+    height: 220px;
   }
 
   .merch__grid {
