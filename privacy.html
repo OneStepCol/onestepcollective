@@ -6,6 +6,7 @@
   <title>Privacy Policy — One Step Collective</title>
   <meta name="description" content="Privacy Policy for the One Step Collective fitness app." />
   <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -45,7 +46,7 @@
     .legal-wrap {
       max-width: 720px;
       margin: 0 auto;
-      padding: 64px 24px 100px;
+      padding: 124px 24px 100px; /* 60px nav + 64px breathing room */
     }
 
     /* ── Page header ── */
@@ -168,6 +169,20 @@
 </head>
 <body>
 
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav__logo">One Step Collective</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="index.html" class="nav__link">Home</a></li>
+      <li><a href="ourstory.html" class="nav__link">Our Story</a></li>
+      <li><a href="index.html#merch" class="nav__link">Merch</a></li>
+      <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+    </ul>
+  </nav>
+
   <div class="legal-wrap">
 
     <header class="legal-header">
@@ -277,5 +292,6 @@
 
   </div>
 
+  <script src="js/main.js"></script>
 </body>
 </html>
