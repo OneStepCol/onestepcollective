@@ -16,6 +16,18 @@ const PRINTFUL_VARIANTS = {
     '4XL': 5276087186,
     '5XL': 5276087187,
   },
+  // TODO: replace with real sync_variant_ids from Printful once bloomtee is set up in the store
+  bloomtee: {
+    XS:    null,
+    S:     null,
+    M:     null,
+    L:     null,
+    XL:    null,
+    '2XL': null,
+    '3XL': null,
+    '4XL': null,
+    '5XL': null,
+  },
 };
 
 // Collect raw body from the request stream

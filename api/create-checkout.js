@@ -12,15 +12,22 @@ const PRODUCTS = {
     price: 3200,
     image: 'https://onestepcollective.com/images/tshirt.png',
   },
+  bloomtee: {
+    name: 'Another Day to Bloom Tee',
+    price: 3200,
+    image: 'https://onestepcollective.com/images/bloomtee.png',
+  },
 };
 
-// Upcharge in cents above the base $32
+// Upcharge in cents above the base $32 — applies to both tees
 const TSHIRT_UPCHARGE = {
   '2XL': 200,
   '3XL': 400,
   '4XL': 600,
   '5XL': 800,
 };
+
+const TEE_PRODUCTS = new Set(['tshirt', 'bloomtee']);
 
 module.exports = async (req, res) => {
   const key = process.env.STRIPE_SECRET_KEY;
@@ -46,7 +53,7 @@ module.exports = async (req, res) => {
       if (!product) throw new Error('Unknown product: ' + item.productId);
 
       const upcharge =
-        item.productId === 'tshirt' ? (TSHIRT_UPCHARGE[item.size] || 0) : 0;
+        TEE_PRODUCTS.has(item.productId) ? (TSHIRT_UPCHARGE[item.size] || 0) : 0;
 
       return {
         price_data: {

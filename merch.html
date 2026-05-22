@@ -102,6 +102,44 @@
           </div>
         </article>
 
+        <!-- BLOOM TEE -->
+        <article class="product-card" data-product="bloomtee">
+          <div class="product-card__img">
+            <img src="images/bloomtee.png" alt="Another Day to Bloom Tee" />
+          </div>
+          <div class="product-card__body">
+            <h2 class="product-card__name">Another Day to Bloom Tee</h2>
+            <p class="product-card__desc">Bella + Canvas 3001 black tee. A reminder that every day you show up is a day you bloom.</p>
+
+            <div class="size-selector" id="bloomteeSizeSelector">
+              <label class="size-selector__label">Size</label>
+              <div class="size-selector__grid">
+                <button class="size-btn" data-size="XS" data-upcharge="0">XS</button>
+                <button class="size-btn" data-size="S"  data-upcharge="0">S</button>
+                <button class="size-btn size-btn--selected" data-size="M"  data-upcharge="0">M</button>
+                <button class="size-btn" data-size="L"  data-upcharge="0">L</button>
+                <button class="size-btn" data-size="XL" data-upcharge="0">XL</button>
+                <button class="size-btn" data-size="2XL" data-upcharge="200">2XL</button>
+                <button class="size-btn" data-size="3XL" data-upcharge="400">3XL</button>
+                <button class="size-btn" data-size="4XL" data-upcharge="600">4XL</button>
+                <button class="size-btn" data-size="5XL" data-upcharge="800">5XL</button>
+              </div>
+              <p class="size-note">XS–XL: $32 &nbsp;·&nbsp; 2XL: $34 &nbsp;·&nbsp; 3XL: $36 &nbsp;·&nbsp; 4XL: $38 &nbsp;·&nbsp; 5XL: $40</p>
+            </div>
+
+            <p class="product-card__price" id="bloomteePrice">$32.00</p>
+            <button class="btn btn--primary btn--full add-to-cart"
+              id="bloomteeAddToCart"
+              data-product-id="bloomtee"
+              data-name="Another Day to Bloom Tee"
+              data-price="3200"
+              data-display-price="$32.00"
+              data-size="M">
+              Add to Cart
+            </button>
+          </div>
+        </article>
+
       </div>
     </div>
   </main>
@@ -182,7 +220,7 @@
       return '$' + (cents / 100).toFixed(2);
     }
 
-    // ---- SIZE SELECTOR ----
+    // ---- SIZE SELECTOR — Rose a Day Tee ----
     const teeSizeSelector = document.getElementById('teeSizeSelector');
     const teeAddToCart    = document.getElementById('teeAddToCart');
     const teePrice        = document.getElementById('teePrice');
@@ -197,6 +235,24 @@
         teeAddToCart.dataset.price = price;
         teeAddToCart.dataset.displayPrice = formatPrice(price);
         teePrice.textContent = formatPrice(price);
+      });
+    });
+
+    // ---- SIZE SELECTOR — Another Day to Bloom Tee ----
+    const bloomteeSizeSelector = document.getElementById('bloomteeSizeSelector');
+    const bloomteeAddToCart    = document.getElementById('bloomteeAddToCart');
+    const bloomteePrice        = document.getElementById('bloomteePrice');
+
+    bloomteeSizeSelector.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        bloomteeSizeSelector.querySelectorAll('.size-btn').forEach(b => b.classList.remove('size-btn--selected'));
+        btn.classList.add('size-btn--selected');
+        const upcharge = parseInt(btn.dataset.upcharge, 10);
+        const price = 3200 + upcharge;
+        bloomteeAddToCart.dataset.size = btn.dataset.size;
+        bloomteeAddToCart.dataset.price = price;
+        bloomteeAddToCart.dataset.displayPrice = formatPrice(price);
+        bloomteePrice.textContent = formatPrice(price);
       });
     });
 
