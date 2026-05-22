@@ -17,6 +17,11 @@ const PRODUCTS = {
     price: 3200,
     image: 'https://onestepcollective.com/images/bloomtee.png',
   },
+  bloommug: {
+    name: 'Another Day to Bloom Mug',
+    price: 1800,
+    image: 'https://onestepcollective.com/images/bloommug.png',
+  },
 };
 
 // Upcharge in cents above the base $32 — applies to both tees

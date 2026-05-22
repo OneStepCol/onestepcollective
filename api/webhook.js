@@ -16,6 +16,10 @@ const PRINTFUL_VARIANTS = {
     '4XL': 5276087186,
     '5XL': 5276087187,
   },
+  // TODO: replace with real sync_variant_id once bloommug is set up in Printful store
+  bloommug: {
+    default: null,
+  },
   bloomtee: {
     XS:    5321266010,
     S:     5321266031,
