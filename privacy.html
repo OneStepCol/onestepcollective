@@ -187,10 +187,10 @@
 
     <header class="legal-header">
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">One Step Collective &middot; Last updated May 3, 2026</p>
+      <p class="legal-meta">One Step Collective &middot; Last updated August 26, 2026</p>
     </header>
 
-    <p class="legal-lead">One Step is a private fitness competition app. We don't run analytics. We don't sell your data. We don't share with advertisers. This page explains exactly what we collect, why, and where it goes.</p>
+    <p class="legal-lead">One Step is a private fitness competition app. We don't sell your data. We don't share with advertisers. We use limited analytics to understand how the app is used — never involving your health data. This page explains exactly what we collect, why, and where it goes.</p>
 
     <div class="legal-body">
 
@@ -233,8 +233,8 @@
         <li>We don't collect your raw heart rate time series or individual workout records.</li>
         <li>We don't collect your location or GPS data.</li>
         <li>We don't access your contacts, photos, microphone, camera, or calendar.</li>
-        <li>We don't use any third-party analytics or crash reporting (no Sentry, no Crashlytics, no Mixpanel, no Firebase, no Amplitude, none).</li>
-        <li>We don't use advertising SDKs, social login SDKs, or any tracking pixels.</li>
+        <li>We don't use crash reporting SDKs (no Sentry, no Crashlytics, no Firebase). The only analytics services we use are PostHog and AppsFlyer, described in Section 4.</li>
+        <li>Aside from AppsFlyer's SKAdNetwork-based install attribution (Section 4), we don't use advertising SDKs, social login SDKs, or any tracking pixels.</li>
         <li>We don't fingerprint your device or build a behavioral profile.</li>
         <li>We don't ask about or collect any data related to alcohol, drug, or recovery status.</li>
       </ul>
@@ -246,23 +246,29 @@
         <li>To show your scores and progress to other participants in challenges you've joined.</li>
         <li>To send the optional notifications you've enabled (challenge updates, daily check-in reminders, streak alerts, participant activity).</li>
       </ul>
-      <p>We do not use your information for advertising, marketing profiling, or any purpose unrelated to operating the app.</p>
+      <p>We do not use your information for marketing profiling or sell it to advertisers. Apart from the install attribution described in Section 4, we don't use your data for advertising purposes.</p>
 
-      <h2>4. Where Your Data Goes</h2>
+      <h2>4. Analytics and Attribution</h2>
+      <p>We use third-party services to understand how the app is used and how people find it. PostHog provides product analytics: it records in-app events such as screen views, challenge creation, and check-ins, associated with your account identifier. AppsFlyer provides install attribution using Apple's SKAdNetwork framework, which tells us which ad campaign led to an install without identifying you personally.</p>
+      <p>We do not use Apple's App Tracking Transparency identifier (IDFA) and do not track you across other companies' apps or websites. We do not send your health data, name, or email address to either service. Both process this information on our behalf under their own privacy policies: <a href="https://posthog.com/privacy">PostHog</a> and <a href="https://www.appsflyer.com/legal/services-privacy-policy/">AppsFlyer</a>.</p>
+
+      <h2>5. Where Your Data Goes</h2>
       <ul>
         <li><strong>Supabase</strong> (our backend provider) — stores your account information and computed fitness scores. Access is gated by row-level security policies that scope reads and writes to your own data and challenges you participate in.</li>
+        <li><strong>PostHog</strong> (product analytics) — receives in-app usage events associated with your account identifier, as described in Section 4.</li>
+        <li><strong>AppsFlyer</strong> (install attribution) — receives SKAdNetwork campaign data that doesn't identify you personally, as described in Section 4.</li>
         <li><strong>Apple Push Notification Service (APNs)</strong> — delivers push notifications, only if you've granted notification permission.</li>
         <li><strong>Apple HealthKit</strong> — read-only, on your device only.</li>
       </ul>
       <p>That's the complete list. We don't share data with any other third parties.</p>
 
-      <h2>5. How We Store Data</h2>
+      <h2>6. How We Store Data</h2>
       <p>Account data and fitness scores are stored on Supabase's infrastructure, which uses industry-standard encryption in transit (TLS) and at rest. Locally on your device, app data is stored using iOS's standard sandboxed storage and is protected by your device's security model.</p>
 
-      <h2>6. Children</h2>
+      <h2>7. Children</h2>
       <p>The app is not intended for children under 13. We do not knowingly collect data from anyone under 13. If you believe a child under 13 has used the app, please contact us and we'll delete the associated account and data.</p>
 
-      <h2>7. Your Rights and Choices</h2>
+      <h2>8. Your Rights and Choices</h2>
       <ul>
         <li><strong>Access and correction</strong> — you can view and edit your profile information from inside the app.</li>
         <li><strong>Deletion</strong> — to delete your account and associated data, email us at <a href="mailto:onestepapp.feedback@gmail.com">onestepapp.feedback@gmail.com</a> from the address tied to your account. We'll confirm and delete within 30 days.</li>
@@ -270,16 +276,16 @@
         <li><strong>HealthKit permissions</strong> — revoke any individual HealthKit permission in iOS Settings &rarr; Health &rarr; Data Access &amp; Devices &rarr; One Step. The app will continue to function but workout-based scoring will stop until permissions are restored.</li>
       </ul>
 
-      <h2>8. Data Retention</h2>
+      <h2>9. Data Retention</h2>
       <p>We retain your account data and scores for as long as your account is active. If you delete your account, we delete your data within 30 days, with the exception of records we're legally required to retain.</p>
 
-      <h2>9. Beta Status</h2>
+      <h2>10. Beta Status</h2>
       <p>The app is currently in beta. During the beta period, we may make changes to data structures, scoring formulas, or features that could affect previously stored data. We'll communicate significant changes in advance where possible.</p>
 
-      <h2>10. Changes to This Policy</h2>
+      <h2>11. Changes to This Policy</h2>
       <p>If we make material changes to this policy, we'll update the "Last updated" date at the top of the page and, where appropriate, notify you in the app or by email.</p>
 
-      <h2>11. Contact</h2>
+      <h2>12. Contact</h2>
       <p>Questions, deletion requests, or anything else: <a href="mailto:onestepapp.feedback@gmail.com">onestepapp.feedback@gmail.com</a></p>
 
     </div><!-- /.legal-body -->
