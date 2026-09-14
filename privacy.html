@@ -187,7 +187,7 @@
 
     <header class="legal-header">
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">One Step Collective &middot; Last updated August 30, 2026</p>
+      <p class="legal-meta">One Step Collective &middot; Last updated September 14, 2026</p>
     </header>
 
     <p class="legal-lead">One Step is a private fitness competition app. We don't sell your data. We don't share with advertisers. We use limited analytics to understand how the app is used — never involving your health data. This page explains exactly what we collect, why, and where it goes.</p>
@@ -235,8 +235,8 @@
         <li>We don't collect your location or GPS data.</li>
         <li>We don't access your contacts, photos, microphone, camera, or calendar.</li>
         <li>We don't use crash reporting SDKs (no Sentry, no Crashlytics, no Firebase). The only analytics services we use are PostHog and AppsFlyer, described in Section 4.</li>
-        <li>Aside from AppsFlyer's SKAdNetwork-based install attribution (Section 4), we don't use advertising SDKs, social login SDKs, or any tracking pixels.</li>
-        <li>We don't fingerprint your device or build a behavioral profile.</li>
+        <li>Aside from AppsFlyer's SKAdNetwork-based install attribution and invite-link delivery (Section 4), we don't use advertising SDKs, social login SDKs, or any tracking pixels.</li>
+        <li>We don't fingerprint your device to track you or build a behavioral profile. (AppsFlyer's invite-link matching briefly compares basic device signals — such as IP address and device model — solely to hand you an invite code on first open; see Section 4. It isn't used for tracking or profiling.)</li>
         <li>We don't ask about or collect any data related to alcohol, drug, or recovery status.</li>
       </ul>
 
@@ -250,14 +250,14 @@
       <p>We do not use your information for marketing profiling or sell it to advertisers. Apart from the install attribution described in Section 4, we don't use your data for advertising purposes.</p>
 
       <h2>4. Analytics and Attribution</h2>
-      <p>We use third-party services to understand how the app is used and how people find it. PostHog provides product analytics: it records in-app events such as screen views, challenge creation, and check-ins, associated with your account identifier. AppsFlyer provides install attribution using Apple's SKAdNetwork framework, which tells us which ad campaign led to an install without identifying you personally.</p>
+      <p>We use third-party services to understand how the app is used and how people find it. PostHog provides product analytics: it records in-app events such as screen views, challenge creation, and check-ins, associated with your account identifier. AppsFlyer provides install attribution using Apple's SKAdNetwork framework, which tells us which ad campaign led to an install without identifying you personally. AppsFlyer also carries challenge invite links through the App Store: when you tap a friend's invite link, it matches that tap to your first app open so the invite code arrives ready. That match is used only to deliver the invite. Invite links contain the challenge code and a random share identifier — never your name, email, or any health data.</p>
       <p>We do not use Apple's App Tracking Transparency identifier (IDFA) and do not track you across other companies' apps or websites. We do not send your health data, name, or email address to either service. Both process this information on our behalf under their own privacy policies: <a href="https://posthog.com/privacy">PostHog</a> and <a href="https://www.appsflyer.com/legal/services-privacy-policy/">AppsFlyer</a>.</p>
 
       <h2>5. Where Your Data Goes</h2>
       <ul>
-        <li><strong>Supabase</strong> (our backend provider) — stores your account information and computed fitness scores. Access is gated by row-level security policies that scope reads and writes to your own data and challenges you participate in.</li>
+        <li><strong>Supabase</strong> (our backend provider) — stores your account information, computed fitness scores, and app activity such as challenges you create or join and invites you share. Access is gated by row-level security policies that scope reads and writes to your own data and challenges you participate in.</li>
         <li><strong>PostHog</strong> (product analytics) — receives in-app usage events associated with your account identifier, as described in Section 4.</li>
-        <li><strong>AppsFlyer</strong> (install attribution) — receives SKAdNetwork campaign data that doesn't identify you personally, as described in Section 4.</li>
+        <li><strong>AppsFlyer</strong> (install attribution and invite links) — receives SKAdNetwork campaign data that doesn't identify you personally, plus invite-link taps matched to first app opens solely to deliver invite codes, as described in Section 4.</li>
         <li><strong>Apple Push Notification Service (APNs)</strong> — delivers push notifications, only if you've granted notification permission.</li>
         <li><strong>Apple HealthKit</strong> — read-only, on your device only.</li>
       </ul>
